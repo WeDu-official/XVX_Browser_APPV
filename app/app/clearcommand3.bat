@@ -1,0 +1,1 @@
+powershell -Command "Start-Process cmd -Verb RunAs -ArgumentList '/k cd /d %~dp0 & start /b C:/WeDu/Python312/python.exe clear3.py & exit'"

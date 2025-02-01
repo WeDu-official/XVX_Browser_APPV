@@ -1,0 +1,1 @@
+start cmd /c "%~dp0src\Scripts\python.exe %~dp0AMMO.py"
