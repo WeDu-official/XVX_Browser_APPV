@@ -4,7 +4,7 @@ it's a very basic and minimal Browser that its creators don't track you
 because we don't track anyone, the source code is open, and we didn't hide anything
 that tracks people or anything like that.
 
--THE 1.8b UPDATE (AKA 'Kakudai origin') (W1.1b/A1.0f):
+<h3>-THE 1.8b UPDATE (AKA 'Kakudai origin') (W1.1b/A1.0f):</h3>
 
 this update is to get rid of the temporary way for the AAM to work using a weird and modified version of the normal W1.1 and instead now it depends on the actual  W1.1b update which would be the base method and not temporary.
 
