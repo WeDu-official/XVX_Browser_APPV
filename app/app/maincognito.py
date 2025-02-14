@@ -243,6 +243,8 @@ def imbt():
         w = open('chi.txt', 'w')
         w.write('')
         w.close()
+        if case == -1:
+            ENDN = True
         if case == 0:
             w = open('chi.txt', 'w')
             w.write('A')
@@ -267,6 +269,18 @@ def imbt():
         global case
         case = 1
         ma()
+
+    def sit3():
+        global case
+        case = -1
+        ma()
+
+    def display_msg():
+        messagebox.showinfo(title='Note', message='the system is going to automatically set option 1 temporally')
+        sit3()
+        gui.destroy()
+
+    gui.protocol('WM_DELETE_WINDOW', display_msg)
 
     tk.Button(gui, text='I want option 1', command=sit1).pack()
     tk.Label(gui, text='option 2:PSCF Burn').pack()
@@ -642,7 +656,7 @@ class WebPage(wx.Panel):
         reload.SetToolTip(reload_tip)
         self.url_field = url_field = wx.TextCtrl(self, style=wx.TE_PROCESS_ENTER)
         self.url_field.SetCursor(wx.Cursor(wx.CURSOR_IBEAM))
-        geoaka = (100, 15)
+        geoaka = (20, 15)
         self.url_field.SetMinSize(geoaka)
         self.fulltitle = fulltitle = wx.TextCtrl(self, value="", style=wx.TE_READONLY)
         self.fulltitle.SetCursor(wx.Cursor(wx.CURSOR_IBEAM))
@@ -660,33 +674,34 @@ class WebPage(wx.Panel):
         self.buttosn.Bind(wx.EVT_ENTER_WINDOW, self.hovered_op1)
         self.buttosn.Bind(wx.EVT_LEAVE_WINDOW, self.leave_op1)
         self.buttosn.SetToolTip(wx.ToolTip('Show menu'))
-        self.buttosn2 = wx.Button(self,label="⚙",size=(30, 30), style=wx.DOUBLE_BORDER)
+        self.buttosn2 = wx.Button(self, label="⚙", size=(30, 30), style=wx.DOUBLE_BORDER)
         self.buttosn2.SetBackgroundColour(LIGHT_SCHEME['button_normal'])
         self.buttosn2.SetForegroundColour(LIGHT_SCHEME['text'])
-        self.buttosn2.SetFont(wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, 'Consolas'))
+        self.buttosn2.SetFont(
+            wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, 'Consolas'))
         self.buttosn2.Bind(wx.EVT_ENTER_WINDOW, self.hovered_op2)
         self.buttosn2.SetToolTip(wx.ToolTip('General Settings'))
         self.SM = wx.Button(self, label="❃", size=(30, 30), style=wx.DOUBLE_BORDER)
         self.SM.SetBackgroundColour(LIGHT_SCHEME['button_normal'])
         self.SM.SetForegroundColour(LIGHT_SCHEME['text'])
-        self.SM.SetFont(wx.Font(19, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, 'Consolas'))
+        self.SM.SetFont(
+            wx.Font(19, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, 'Consolas'))
         self.SM.Bind(wx.EVT_ENTER_WINDOW, self.hovered_sm)
         self.SM.Bind(wx.EVT_LEAVE_WINDOW, self.leave_sm)
-        self.SM.SetToolTip(wx.ToolTip('show menu'))
+        self.SM.SetToolTip(wx.ToolTip('Show extensions'))
         stacked_sizer = wx.BoxSizer(wx.VERTICAL)
-        stacked_sizer.Add(self.url_field,1, wx.EXPAND,5)
-        stacked_sizer.Add(self.fulltitle,1, wx.EXPAND,5)
-        self.html_window = html_window = wx.html2.WebView.New(self,backend=wx.html2.WebViewBackendEdge)
+        stacked_sizer.Add(self.url_field, 1, wx.EXPAND, 5)
+        stacked_sizer.Add(self.fulltitle, 1, wx.EXPAND, 5)
+        self.html_window = html_window = wx.html2.WebView.New(self, backend=wx.html2.WebViewBackendEdge)
         top_bar_container.AddGrowableCol(4)
         top_bar_container.Add(back, 0, wx.LEFT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(forward, 0, wx.LEFT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(reload, 0, wx.LEFT | wx.BOTTOM | wx.TOP, 5)
-        top_bar_container.AddSpacer(30)
+        top_bar_container.AddSpacer(5)
         self.top_bar_container.Add(stacked_sizer, 0, wx.EXPAND)
         top_bar_container.Add(self.buttosn, 0, wx.RIGHT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(self.buttosn2, 0, wx.RIGHT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(self.SM, 0, wx.RIGHT | wx.BOTTOM | wx.TOP, 5)
-        top_bar_container.AddSpacer(30)
         top_bar_container.Add(self.new, 0, wx.ALIGN_RIGHT | wx.BOTTOM | wx.RIGHT | wx.TOP, 5)
         self.find_container = find_container = wx.BoxSizer(wx.HORIZONTAL)
         self.find_field = find_field = wx.TextCtrl(self, style=wx.TE_PROCESS_ENTER)
@@ -1301,33 +1316,15 @@ class Browser(wx.Frame):
             self.SetIcon(icone)
         else:
             pass
-        self.SetMinSize((500, 450))
+        self.SetMinSize((360, 110))
         self.hovered_page = None
         self.hover_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_hover_timer)
         self.Bind(wx.EVT_CLOSE, self.OnClose)
         self.history_closed = []
         self.load_notebook()
-    def burn1(self):
-        global bookmarks
-        bookmarks = []
-        self.bookmarks = []
-        write = open('bookmarksi.txt', 'w')
-        write.write("")
-        write.close()
-        os.startfile('clearcommandi.bat')
-        exit()
-    def burn2(self):
-        global bookmarks
-        bookmarks = []
-        self.bookmarks = []
-        write = open('bookmarksi.txt', 'w')
-        write.write("")
-        write.close()
-        subprocess.Popen('C:/WeDu/Python312/python.exe clearci.py')
-        exit()
     def OnClose(self, event):
-        global ENDN
+        global ENDN,bookmarks
         dlg = wx.MessageDialog(self, "Are you sure you want to close?", "Confirmation",
                                wx.YES_NO | wx.ICON_QUESTION)
         result = dlg.ShowModal()
@@ -1335,9 +1332,21 @@ class Browser(wx.Frame):
             event.Veto()
         else:
             if ENDN is True:
-                self.burn1()
-            if ENDN is False:
-                self.burn2()
+                bookmarks = []
+                self.bookmarks = []
+                write = open('bookmarksi.txt', 'w')
+                write.write("")
+                write.close()
+                os.startfile('clearcommandi.bat')
+                exit()
+            elif ENDN is False:
+                bookmarks = []
+                self.bookmarks = []
+                write = open('bookmarksi.txt', 'w')
+                write.write("")
+                write.close()
+                subprocess.Popen('C:/WeDu/Python312/python.exe clearci.py')
+                exit()
             else:
                 wx.MessageDialog(self, "Browser couldn't know if it should at the end of IM section to either Burn or Burn PSCF", "ERROR")
                 exit()

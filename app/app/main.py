@@ -432,7 +432,6 @@ class HistoryPage(wx.Panel):
         d_tip = wx.ToolTip('delete selected item from history')
         self.delh.SetToolTip(d_tip)
         top_bar_container.Add(label, 1, wx.LEFT | wx.RIGHT | wx.ALIGN_CENTER_VERTICAL, 5)
-        top_bar_container.AddSpacer(30)
         top_bar_container.Add(self.delh, 0, wx.BOTTOM | wx.RIGHT | wx.TOP, 5)
         top_bar_container.Add(self.new, 0, wx.BOTTOM | wx.RIGHT | wx.TOP, 5)
         pagesizer.Add(top_bar_container, proportion=False, flag=wx.EXPAND)
@@ -681,7 +680,7 @@ class WebPage(wx.Panel):
         reload.SetToolTip(reload_tip)
         self.url_field = url_field = wx.TextCtrl(self, style=wx.TE_PROCESS_ENTER)
         self.url_field.SetCursor(wx.Cursor(wx.CURSOR_IBEAM))
-        geoaka = (100, 15)
+        geoaka = (20, 15)
         self.url_field.SetMinSize(geoaka)
         self.fulltitle = fulltitle = wx.TextCtrl(self, value="", style=wx.TE_READONLY)
         self.fulltitle.SetCursor(wx.Cursor(wx.CURSOR_IBEAM))
@@ -720,12 +719,11 @@ class WebPage(wx.Panel):
         top_bar_container.Add(back, 0, wx.LEFT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(forward, 0, wx.LEFT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(reload, 0, wx.LEFT | wx.BOTTOM | wx.TOP, 5)
-        top_bar_container.AddSpacer(30)
+        top_bar_container.AddSpacer(5)
         self.top_bar_container.Add(stacked_sizer, 0, wx.EXPAND)
         top_bar_container.Add(self.buttosn, 0, wx.RIGHT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(self.buttosn2, 0, wx.RIGHT | wx.BOTTOM | wx.TOP, 5)
         top_bar_container.Add(self.SM, 0, wx.RIGHT | wx.BOTTOM | wx.TOP, 5)
-        top_bar_container.AddSpacer(30)
         top_bar_container.Add(self.new, 0, wx.ALIGN_RIGHT | wx.BOTTOM | wx.RIGHT | wx.TOP, 5)
         self.find_container = find_container = wx.BoxSizer(wx.HORIZONTAL)
         self.find_field = find_field = wx.TextCtrl(self, style=wx.TE_PROCESS_ENTER)
@@ -948,7 +946,7 @@ class WebPage(wx.Panel):
                 out = open(file_name, 'w')
                 out.writelines(lines)
                 out.close()
-            replace_line('home.html',132,f'                let searchEngine = {searchengine};\n')
+            replace_line('home.html',211,f'                let searchEngine = {searchengine};\n')
         tk.Button(root, text='set',width=9,height=2,bg='lightblue',command=sett).pack()
         root.mainloop()
     def changebackground(self, event):
@@ -1436,7 +1434,7 @@ class Browser(wx.Frame):
             self.SetIcon(icone)
         else:
             pass
-        self.SetMinSize((500, 450))
+        self.SetMinSize((360, 110))
         self.hovered_page = None
         self.hover_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_hover_timer)
