@@ -6,9 +6,17 @@ it's a very basic and minimal Browser that its creators don't track you
 because we don't track anyone, the source code is open, and we didn't hide anything
 
 that tracks people or anything like that.
+
 ----------------
 
-<h3>-THE 1.8G UPDATE (AKA 'Kakudai flowers') (NONE):</h3>
+<h3>-THE 1.8G2 UPDATE (AKA 'Kakudai flowers2') (NONE):</h3>
+
+updating hard coded homepages in the system with the new changes
+and fixing the 'Forgotten <' problem in normal homepage
+
+----------------
+
+-THE 1.8G UPDATE (AKA 'Kakudai flowers') (NONE):
 
 note: from this update, only the updates that need changes of WBSE compared
 to the version before it  would be added as a new version in the W series, and only the update that need changes for their AMM compared to the version before it would be added as a new version in the A series.

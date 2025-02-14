@@ -6,8 +6,8 @@
     <style>
 body {
     font-family: Arial, sans-serif;
-    background-image: url("background.jpg");
-    background-size: cover;
+    background-image: url("background.jpg"); /* Replace with your desired image */
+            background-size: cover;
     background-position: center;
     margin: 0;
     display: flex;
@@ -259,7 +259,7 @@ body {
 
             if (searchQuery) {
                 // Read search engine preference from set.txt
-                let searchEngine = 1;
+                let searchEngine = 0;
                 fetch('set.txt')
                     .then(response => {
                         if (response.ok) {
